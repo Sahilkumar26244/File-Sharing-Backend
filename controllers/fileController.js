@@ -1,14 +1,10 @@
 const {File} = require('../models/fileModel')
 
 
-const getFile = (req,res) => {
-    File.find().then(posts => {
-        res.json({posts})
-    })
-    .catch(err => {
-        console.log(err)
-    })
-    
+const getFile = async(req,res) => {
+  const file = await File.find({user:req.user._id})
+  res.json(file)
+  
 }
 
 const uploadFile = (req,res) => {
